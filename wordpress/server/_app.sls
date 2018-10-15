@@ -31,7 +31,7 @@ wordpress_{{ app_name }}_source:
 
 wordpress_{{ app_name }}_core_install:
   cmd.run:
-  - name: wp core install --url='{{ app.host }}' --title='{{ app.title }}' --admin_user='{{ app.admin_user }}' --admin_password='{{ app.admin_password }}' --admin_email='{{ app.admin_email }}'
+  - name: wp core install --url='{{ app.host }}' --title='{{ app.title }}' --admin_user='{{ app.admin_user }}' --admin_password='{{ app.admin_password }}' --admin_email='{{ app.admin_email }}' --allow-root
   - cwd: {{ app_dir }}
   - user: www-data
   - unless: wp core is-installed --path="{{ app_dir }}" --allow-root
@@ -40,7 +40,7 @@ wordpress_{{ app_name }}_core_install:
 
 wordpress_{{ app_name }}_core_update:
   cmd.run:
-  - name: wp core update
+  - name: wp core update --allow-root
   - cwd: {{ app_dir }}
   - user: www-data
   - unless: wp core check-update
@@ -51,7 +51,7 @@ wordpress_{{ app_name }}_core_update:
 
 wordpress_{{ app_name }}_theme_update:
   cmd.run:
-  - name: wp theme update --all
+  - name: wp theme update --all --allow-root
   - cwd: {{ app_dir }}
   - user: www-data
 
