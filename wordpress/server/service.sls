@@ -7,8 +7,6 @@ include:
 wordpress_packages:
   pkg.installed:
   - names: {{ server.pkgs }}
-  - require:
-    - pkg: git_packages
 
 wordpress_dirs:
   file.directory:
